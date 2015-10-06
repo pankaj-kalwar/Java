@@ -20,10 +20,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.annotations.CollectionId;
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Type;
-
 @Entity
 // @Entity(name = "USER_DETAILS") // Using this will change the entity name as
 // well i.e. while writing HQL you have to mentioned entity name
@@ -62,16 +58,17 @@ public class UserDetails {
 	@Embedded
 	private Address officeAddress;
 	
-	@ElementCollection
+	@ElementCollection//(fetch=FetchType.EAGER)
 	@JoinTable(name="user_address", joinColumns=@JoinColumn(name="user_id"))
+	//@Fetch(value = FetchMode.SELECT)
 	/*private Set<Address> listOfAddress = new HashSet<Address>();*/
 	
 	/**
 	 * to generate a id of embedded 
 	 * 
 	 */
-	@GenericGenerator(name="hilo-gen", strategy="hilo")
-	@CollectionId(columns = { @Column(name="address_id") }, generator = "hilo-gen", type = @Type(type="long"))
+	/*@GenericGenerator(name="hilo-gen", strategy="hilo")
+	@CollectionId(columns = { @Column(name="address_id") }, generator = "hilo-gen", type = @Type(type="long"))*/
 	private Collection<Address> listOfAddress = new ArrayList<Address>();
 
 	public UserDetails() {

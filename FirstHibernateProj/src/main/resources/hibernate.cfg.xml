@@ -31,5 +31,7 @@
 		<!-- Names of the annotated entity classes -->
 		
 		<mapping class="com.beyondalgo.dto.UserDetails"/>
+		<mapping class="com.beyondalgo.dto.UserDetails2"/>
+		<mapping class="com.beyondalgo.dto.Vehicle"/>
 	</session-factory>
 </hibernate-configuration>

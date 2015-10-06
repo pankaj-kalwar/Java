@@ -64,10 +64,14 @@ public class HibernateTest {
 		user1 = null;
 		// Fetching a data 
 		session = sessionFactory.openSession();
-		session.beginTransaction();
 		
-		/*user1 = (UserDetails) session.get(UserDetails.class, 1);
-		System.out.println("User Name = "+user1.getName());*/
+		// using load method
+		//user1 = (UserDetails) session.load(UserDetails.class, 2);
+		user1 = (UserDetails) session.get(UserDetails.class, 1);
+		session.close();
+		
+		//System.out.println("User Details Object = "+user1);
+		System.out.println("User Address = "+user1.getListOfAddress());
 		
 	}
 }
