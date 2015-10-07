@@ -154,7 +154,7 @@ Types-
  
  Types
  	
-	1. One to one - Mainly defined using @OneToOne annotation. 
+1. One to one - Mainly defined using @OneToOne annotation. 
 	
 	e.g.
 	
@@ -165,13 +165,42 @@ Types-
 		- In this example one user has one vehicle. While saving a data you have to save vehicle also,
 		if you are not saving vehicle than it throws "org.hibernate.TransientObjectException"  
 		
-	2. One to many <-> Many to one - used while referencing one to many relation
+2. One to many <-> Many to one - used while referencing one to many relation
 
 	e.g.
 	
-		@OneToOne
-		@JoinColumn(name = "vehicle_id")
-		private Vehicle vehicle;
-	3. Many to many
+	1. 
+		public class UserDetails{
+			OneToMany
+			@JoinTable(name = "USER_VEHICLE", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "VEHICLE_ID"))
+			private Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
+	
+		}
+		
+		public class Vehicle{
+			@ManyToOne
+			@JoinColumn(name = "USER_ID")
+			private UserDetails2 userDetails2;
+		}
+		
+		- in this example it will create a separate table i.e. USER_VEHICLE with columns user_id and vehicle_id 
+		
+	2. Use of mappedBy attribute - which the reference with the table
+		
+		public class UserDetails{
+			OneToMany(mappedBy="userDetails2")			
+			private Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
+	
+		}
+		
+		public class Vehicle{
+			@ManyToOne
+			@JoinColumn(name = "USER_ID")
+			private UserDetails2 userDetails2;
+		}
+		
+		- in this example it will not create separate table instead create reference column in Vehicle table
+			
+3. Many to many
 	
 	
