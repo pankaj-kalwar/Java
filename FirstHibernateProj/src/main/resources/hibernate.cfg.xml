@@ -30,8 +30,16 @@
 		
 		<!-- Names of the annotated entity classes -->
 		
-		<mapping class="com.beyondalgo.dto.UserDetails"/>
+		<!-- <mapping class="com.beyondalgo.dto.UserDetails"/>
 		<mapping class="com.beyondalgo.dto.UserDetails2"/>
-		<mapping class="com.beyondalgo.dto.Vehicle"/>
+		<mapping class="com.beyondalgo.dto.Vehicle"/> -->
+		
+		<!-- For Inheritance example -->
+		<!-- <mapping class="com.beyondalgo.hibernate.inheritanceExample.VehicleForInheritance"/>
+		<mapping class="com.beyondalgo.hibernate.inheritanceExample.TwoWheeler"/>
+		<mapping class="com.beyondalgo.hibernate.inheritanceExample.FourWheeler"/> -->
+		
+		<!-- For CRUD Example -->
+		<mapping class="com.beyondalgo.hibernate.crudExample.UserDetailsForCrud"/>
 	</session-factory>
 </hibernate-configuration>

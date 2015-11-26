@@ -3,11 +3,13 @@ package com.beyondalgo.dto;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -16,7 +18,7 @@ import javax.persistence.Table;
 public class UserDetails2 {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
 	private int id;
 	private String name;
 
@@ -29,6 +31,12 @@ public class UserDetails2 {
 	private Collection<Vehicle> vehicles = new ArrayList<Vehicle>();*/
 	
 	// Many to many 
+	/*@ManyToMany
+	@JoinTable(name="USER_VEHICLES")
+	private Collection<Vehicle> vehicles = new ArrayList<Vehicle>();*/
+	
+	// One to many with cascade type
+	@OneToMany(cascade=CascadeType.PERSIST)
 	private Collection<Vehicle> vehicles = new ArrayList<Vehicle>();
 
 	public int getId() {

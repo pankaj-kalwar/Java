@@ -15,6 +15,9 @@ public class HibernateTest2 {
 		UserDetails2 user1 = new UserDetails2();
 		user1.setName("First User");
 		
+		UserDetails2 user2 = new UserDetails2();
+		user1.setName("Second User");
+		
 		Vehicle vehicle = new Vehicle();
 		vehicle.setName("Car");
 		
@@ -28,19 +31,40 @@ public class HibernateTest2 {
 		
 		/*user1.setVehicle(vehicle);
 		user1.setVehicle(vehicle2);*/
-		user1.getVehicles().add(vehicle);
+		
+		// For One to many & many to one example 
+		/*user1.getVehicles().add(vehicle);
 		vehicle.setUserDetails2(user1);
 		user1.getVehicles().add(vehicle2);
-		vehicle2.setUserDetails2(user1);
+		vehicle2.setUserDetails2(user1);*/
+		
+		// For Many to any Example
+		/*user1.getVehicles().add(vehicle);
+		user1.getVehicles().add(vehicle2);
+		//user2.getVehicles().add(vehicle);
+		
+		vehicle.getUserDetailsList().add(user1);
+		vehicle.getUserDetailsList().add(user2);
+		vehicle2.getUserDetailsList().add(user1);*/
+		
+		// For one to many with cascade
+		user1.getVehicles().add(vehicle);
+		user1.getVehicles().add(vehicle2);
 		
 		SessionFactory sessionFactory = new Configuration().configure().buildSessionFactory();
 		
 		// Adding a data 
 		Session session = sessionFactory.openSession();
 		session.beginTransaction();
-		session.save(user1);
+		session.persist(user1);
+		
+		// When using cascade than you don't need to save child entity. It will automatically save it to DB
+		/*session.save(user2);
 		session.save(vehicle);
-		session.save(vehicle2);
+		session.save(vehicle2);*/
+		
+		
+		
 		session.getTransaction().commit();
 		session.close();
 	}

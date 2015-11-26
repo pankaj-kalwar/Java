@@ -28,7 +28,7 @@ import javax.persistence.TemporalType;
 // writing HQL you have to use class name as the default entity name
 public class UserDetails {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
 	private int id;
 	
