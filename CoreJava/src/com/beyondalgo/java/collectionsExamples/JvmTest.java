@@ -1,4 +1,4 @@
-package com.beyondalgo.java.collections;
+package com.beyondalgo.java.collectionsExamples;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -1,4 +1,4 @@
-package com.beyondalgo.java.collections;
+package com.beyondalgo.java.collectionsExamples;
 
 public class Employee {
 	private String name;
