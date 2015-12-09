@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	
+	<!-- Library Scripts -->
+	<script type="text/javascript" src="js/lib/angular.js"></script>
+	<script type="text/javascript" src="js/lib/angular-route.js"></script>
+	
+	<!-- Application main scripts -->
+	<script type="text/javascript" src="js/app.js"></script>
+	
+	<!-- Employee Module Scripts -->
+	<script type="text/javascript" src="js/employee/employeeController.js"></script>
+	<script type="text/javascript" src="js/employee/employeeService.js"></script>
+	
+</head>
+<body ng-app="DemoApp">
+	Demo Page
+	Angular Expressions = {{7+3}}
+	
+	<!-- Container -->
+	<!-- <div ng-view></div> -->
+	
+	<div ng-controller="EmployeeCtrl">
+		abc {{name}}
+	</div>
+</body>
+</html>
