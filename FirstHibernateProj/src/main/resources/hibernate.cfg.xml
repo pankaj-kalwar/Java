@@ -40,6 +40,9 @@
 		<mapping class="com.beyondalgo.hibernate.inheritanceExample.FourWheeler"/> -->
 		
 		<!-- For CRUD Example -->
-		<mapping class="com.beyondalgo.hibernate.crudExample.UserDetailsForCrud"/>
+		<!-- <mapping class="com.beyondalgo.hibernate.crudExample.UserDetailsForCrud"/> -->
+		
+		<!-- For HQL Example -->
+		<mapping class="com.beyondalgo.hibernate.queryConcept.UserDetailsForQuery"/>
 	</session-factory>
 </hibernate-configuration>

@@ -9,10 +9,7 @@ import org.hibernate.cfg.Configuration;
 import com.beyondalgo.dto.Address;
 import com.beyondalgo.dto.UserCompositeKey;
 import com.beyondalgo.dto.UserDetails;
-
 public class HibernateTest {
-	
-	
 	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 		UserDetails user1 = new UserDetails();

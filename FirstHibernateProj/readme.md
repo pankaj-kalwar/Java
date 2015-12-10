@@ -370,3 +370,82 @@ Hibernate Object state
 		user.setName("Object in detached state");
 	
 	
+	
+Hibernate HQL
+---------------------
+- By using createQuery method
+	
+	e.g.
+	
+	session.createQuery("from UserDetailsForQuery");
+	
+	- In that, the table name is nothing but a EntityName defined in pojo creation
+	
+	// while parameter binding use field name
+	 
+	session.createQuery("select name from UserDetailsForQuery");
+	- In that, "name" is the field name in Entity it's not a column name in table.  
+
+- By 2 ways we can bind the parameters and prevent SQL injection
+
+	1. Position indicator : by using "?" operator
+	
+		e.g.
+		Query query = session.createQuery("from UserDetailsForQuery where name = ?");
+		query.setString(0, userName);
+		
+		// can define multiple "?" 
+		Query query = session.createQuery("from UserDetailsForQuery where id = ? and name = ?");
+		query.setString(0, userId);
+		query.setString(1, userName);
+
+	2. Place Holder [Recommended way] : by using ":<anyDefination>" e.g. ":name"
+		
+		e.g.
+		Query query = session.createQuery("from UserDetailsForQuery where name = :userName");
+		query.setString("userName", userName);
+	
+Hibernate Named Queries
+-----------------------
+
+Two ways 
+
+- @NamedQuery / @NamedQueries (for defining multiple named query in it) : Used to write HQL queries only
+	
+		syntax - @NamedQuery(name="<Query Name>", query = "<HQL Query>")
+	
+		e.g.
+		 
+		@NamedQuery(name="UserDetails.byName", query = "from UserDetailsForQuery where name = ?")
+		
+		can define multiple named query using @NamedQueries
+		
+		@NamedQueries(
+			{
+				@NamedQuery(name="UserDetails.byName", query = "from UserDetailsForQuery where name = ?"),
+				@NamedQuery(name="UserDetails.byNoCondition", query = "from UserDetailsForQuery")
+			}
+		)
+	
+- @NamedNativeQuery / @NamedNativeQuries  : Used to write plain SQL queries 
+
+		syntax - @NamedNativeQuery(name="<Query Name>", query = "<HQL Query>", resultClass=<Expectedclass>)
+	
+		e.g.
+		 
+		@NamedNativeQuery(name = "UserDetails.byId", query = "select * from User_Details_For_Query where id = ?", resultClass=UserDetailsForQuery.class)
+
+
+Both Queries can be executed as,
+	
+		session.getNamedQuery("<Query Name defined in annotation>");
+		
+		e.g.
+		
+		session.getNamedQuery("UserDetails.byName");
+		session.getNamedQuery("UserDetails.byId");
+		
+Hibernate Criteria Query
+----------------------
+
+For multiple disjunction ('OR') - http://stackoverflow.com/questions/5859058/how-to-make-a-criteria-query-with-3-or-criterions-properly
