@@ -7,6 +7,10 @@ Reference
 5. http://websystique.com/springmvc/spring-4-mvc-helloworld-tutorial-annotation-javaconfig-full-example/
 6. http://websystique.com/springmvc/spring-mvc-4-restful-web-services-crud-example-resttemplate/
 
+Understand the request Methods 
+--------------------------
+1. http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html
+
 
 issues resolving
 -----------------
