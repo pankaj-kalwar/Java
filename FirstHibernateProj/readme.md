@@ -449,3 +449,6 @@ Hibernate Criteria Query
 ----------------------
 
 For multiple disjunction ('OR') - http://stackoverflow.com/questions/5859058/how-to-make-a-criteria-query-with-3-or-criterions-properly
+
+-------
+Testing Merge from Eclipse
