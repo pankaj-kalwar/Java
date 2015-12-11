@@ -369,7 +369,7 @@ Hibernate Object state
 		// After the session is closed .. user object has Detached state
 		user.setName("Object in detached state");
 	
-	
+-------------------------------	
 	
 Hibernate HQL
 ---------------------
@@ -450,10 +450,98 @@ Hibernate Criteria Query
 
 For multiple disjunction ('OR') - http://stackoverflow.com/questions/5859058/how-to-make-a-criteria-query-with-3-or-criterions-properly
 
--------
-Testing Merge from Eclipse
-One moreline
 
---====
-TEsting Merge on github
+Criteria Query with projection
+--------------------------------
 
+---------------------------
+Caching
+--------------------
+1. First Level Caching   -  Available at session level scope
+2. Second Level Caching  -  Available at sessionFactory level scope
+
+First Level Caching
+---------------------------- 
+
+Important facts (Reference - http://howtodoinjava.com/2013/07/01/understanding-hibernate-first-level-cache-with-example/)
+
+1. First level cache is associated with “session” object and other session objects in application can not see it.
+2. The scope of cache objects is of session. Once session is closed, cached objects are gone forever.
+3. First level cache is enabled by default and you can not disable it.
+4. When we query an entity first time, it is retrieved from database and stored in first level cache associated with hibernate session.
+5. If we query same object again with same session object, it will be loaded from cache and no sql query will be executed.
+6. The loaded entity can be removed from session using evict() method. The next loading of this entity will again make a database call if it has been removed using evict() method.
+7. The whole session cache can be removed using clear() method. It will remove all the entities stored in cache.
+	
+	e.g.
+	
+		SessionFactory sessionFactory = new Configuration().configure()
+				.buildSessionFactory();
+
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+
+		/** Caching test */
+		UserDetailsForCaching user1 = (UserDetailsForCaching) session.get(UserDetailsForCaching.class, 2);
+		user1.setName("User 2 updated");
+		
+		
+		UserDetailsForCaching user2 = (UserDetailsForCaching) session.get(UserDetailsForCaching.class, 2);
+		System.out.println("name = "+user2.getName());
+		
+		session.getTransaction().commit();
+		session.close();
+		
+	Output : 
+		
+		Hibernate: select userdetail0_.id as id0_0_, userdetail0_.name as name0_0_ from User_Details_For_Query userdetail0_ where userdetail0_.id=?
+		name = User 2 updated
+		
+		- As you found only first the select query executed and next time if you try to get, it takes from cache with latest value even if you update in between.
+		
+
+To remove data from cache use "evict()" - for single object removal or "clear()" - for all object removal
+
+		e.g.
+			
+			UserDetailsForCaching user1 = (UserDetailsForCaching) session.get(UserDetailsForCaching.class, 2);
+			
+			session.evict(user1);  // session.clear();
+			
+			UserDetailsForCaching user2 = (UserDetailsForCaching) session.get(UserDetailsForCaching.class, 2);
+			
+		output:
+			
+			Hibernate: select userdetail0_.id as id0_0_, userdetail0_.name as name0_0_ from User_Details_For_Query userdetail0_ where userdetail0_.id=?
+			Hibernate: select userdetail0_.id as id0_0_, userdetail0_.name as name0_0_ from User_Details_For_Query userdetail0_ where userdetail0_.id=?
+			
+			- As we clear the object using evict(), result to select query.
+			
+Second Level Caching
+-----------------------
+
+In Progress --
+
+Reference to understand in deep
+1. https://docs.jboss.org/hibernate/orm/3.5/reference/en/html/performance.html
+2. https://myadventuresincoding.wordpress.com/2009/10/11/second-level-caching-for-hibernate-with-terracotta/
+3. http://stackoverflow.com/questions/23671227/how-to-use-hibernate-for-cache-master-table-data
+4. http://tech.puredanger.com/2009/07/10/hibernate-query-cache/
+5. https://developer.jboss.org/wiki/usinginfinispanasjpahibernatesecondlevelcacheprovider#Advanced_Configuration
+6. http://stackoverflow.com/questions/4951502/is-it-possible-to-limit-the-size-of-hibernate-second-level-cache-for-a-specific
+7. http://stackoverflow.com/questions/11601538/hibernate-4-with-second-level-cache-what-wrong-in-my-understanding
+8. http://howtodoinjava.com/2013/07/02/how-hibernate-second-level-cache-works/
+9. http://stackoverflow.com/questions/18825643/nocacheprovider-class-alternative-in-hibernate-4
+
+
+Read this 
+---
+
+1.  http://kaviddiss.com/2014/09/05/7-ways-to-improve-performance-of-a-hibernate-application/
+2. http://www.martinfowler.com/articles/injection.html
+3. http://docs.spring.io/spring/docs/2.5.x/reference/beans.html
+4. http://howtodoinjava.com/2013/03/19/inversion-of-control-ioc-and-dependency-injection-di-patterns-in-spring-framework-and-related-interview-questions/
+
+5. https://wiki.python.org/moin/BeginnersGuide/Programmers
+6. https://www.python.org/about/gettingstarted/
+					
