@@ -8,6 +8,7 @@ import org.hibernate.criterion.Junction;
 import org.hibernate.criterion.Restrictions;
 
 public class HibernateCriteriaQueryTest {
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
 		SessionFactory sessionFactory = new Configuration().configure()

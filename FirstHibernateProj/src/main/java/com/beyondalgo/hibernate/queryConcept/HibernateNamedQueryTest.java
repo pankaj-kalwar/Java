@@ -6,6 +6,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 public class HibernateNamedQueryTest {
+	@SuppressWarnings("deprecation")
 	public static void main(String[] args) {
 
 		SessionFactory sessionFactory = new Configuration().configure()
