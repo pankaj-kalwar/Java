@@ -24,7 +24,27 @@
 	<!-- <div ng-view></div> -->
 	
 	<div ng-controller="EmployeeCtrl">
-		abc {{name}}
+		Employee Controller Name == {{name}}
 	</div>
+	<br /><br /><br /><br />
+	<div ng-controller="EmployeeCtrl1">
+		Employee Controller 2 Name == {{name1}}
+		<br />
+		Data From Service == {{dataFromService}} 
+	</div>
+	
+	
+	<div> Filter Example  === 
+		Lower case == {{"Hello" | lowercase}}
+		Upper case == {{"Hello" | uppercase}}
+	</div>
+	
+	
+	<!-- Normalization  -->
+	<!-- <div ng-controller="EmployeeCtrl">
+	  Hello <input ng-model='name'> <hr/>
+	  <span ng-bind="name"></span> <br/>
+	  <span data-ng-bind="name"></span> <br/>
+	</div> -->
 </body>
 </html>
