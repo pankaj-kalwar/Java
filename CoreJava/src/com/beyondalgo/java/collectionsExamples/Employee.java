@@ -5,7 +5,6 @@ public class Employee {
 	private int id;
 
 	public Employee() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Employee(String name, int id) {
