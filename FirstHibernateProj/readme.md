@@ -534,6 +534,19 @@ Reference to understand in deep
 9. http://stackoverflow.com/questions/18825643/nocacheprovider-class-alternative-in-hibernate-4
 
 
+Query Level Caching
+-------------------------
+Steps to use query level caching
+1. add property "<property name="hibernate.cache.use_query_cache">true</property>" in hibernate configuration file.
+2. set cacheable = true for defined query 
+	
+	e.g.
+	
+		Query query = session.createQuery("from User user where id = 2" );
+		query.setCacheable(true);
+		List users = query.list();
+
+
 Read this 
 ---
 
