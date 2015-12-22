@@ -15,29 +15,43 @@
 	<script type="text/javascript" src="js/employee/employeeController.js"></script>
 	<script type="text/javascript" src="js/employee/employeeService.js"></script>
 	
+	
+	<script type="text/javascript">
+		
+
+	</script>
 </head>
-<body ng-app="DemoApp">
-	Demo Page
-	Angular Expressions = {{7+3}}
+<!-- <body ng-app="DemoApp"> -->
+<body>
+	
 	
 	<!-- Container -->
 	<!-- <div ng-view></div> -->
 	
-	<div ng-controller="EmployeeCtrl">
-		Employee Controller Name == {{name}}
+	<div ng-app="DemoApp">
+		<div ng-controller="EmployeeCtrl">
+			Normal Expression = {{7+3}}
+			<br />
+			Employee Controller Name == {{name}}
+		</div>
 	</div>
 	<br /><br /><br /><br />
-	<div ng-controller="EmployeeCtrl1">
-		Employee Controller 2 Name == {{name1}}
-		<br />
-		Data From Service == {{dataFromService}} 
-	</div>
 	
+	<div ng-app="DemoApp2">
+		Loading from second module 
+		<br /><br />
+		<div ng-controller="EmployeeCtrl1">
+			Employee Controller 2 Name == {{name1}}
+			<br />
+			Data From Service == {{dataFromService}} 
+		</div>
+	</div>
+	<!-- 
 	
 	<div> Filter Example  === 
 		Lower case == {{"Hello" | lowercase}}
 		Upper case == {{"Hello" | uppercase}}
-	</div>
+	</div> -->
 	
 	
 	<!-- Normalization  -->

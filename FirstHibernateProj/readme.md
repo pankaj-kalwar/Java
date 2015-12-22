@@ -547,6 +547,14 @@ Steps to use query level caching
 		List users = query.list();
 
 
+Improving Performance
+----------------------
+Reference links 
+1. https://docs.jboss.org/hibernate/orm/3.3/reference/en/html/performance.html#performance-cache-mapping
+2. http://vladmihalcea.com/2015/05/25/how-does-hibernate-read_write-cacheconcurrencystrategy-work/
+3. http://vladmihalcea.com/2015/04/09/how-does-hibernate-store-second-level-cache-entries/
+
+
 Read this 
 ---
 
