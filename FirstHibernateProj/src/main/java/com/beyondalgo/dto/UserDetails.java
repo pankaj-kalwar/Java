@@ -32,7 +32,7 @@ public class UserDetails {
 	@Column(name = "user_id")
 	private int id;
 	
-	//@EmbeddedId	
+	//@EmbeddedId
 	private UserCompositeKey compositeKey;
 
 	@Column(name = "user_name")

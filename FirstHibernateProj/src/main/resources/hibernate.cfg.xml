@@ -53,5 +53,8 @@
 		<!-- For Caching Example -->
 		<mapping class="com.beyondalgo.hibernate.caching.UserDetailsForCaching"/>
 		<mapping class="com.beyondalgo.hibernate.caching.UserDetailsForSecondLevelCaching"/>
+		
+		<!-- For custom id generation  -->
+		<mapping class="com.beyondalgo.hibernate.customidgeneration.CustomIdGenerator"/>
 	</session-factory>
 </hibernate-configuration>
